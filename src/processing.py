@@ -1,12 +1,12 @@
 from datetime import datetime
-from typing import List, Dict
+from typing import Dict, List
 
 
-def filter_by_state(list_of_dictionary: list, state='EXECUTED') -> list:
+def filter_by_state(list_of_dictionary: list, state="EXECUTED") -> list:
     """Функция возвращает новый список словарей по заданному значению ключа"""
     new_list_of_dictionary = []
     for i in list_of_dictionary:
-        if i['state'] == state:
+        if i["state"] == state:
             new_list_of_dictionary.append(i)
         else:
             continue

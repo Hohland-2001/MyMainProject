@@ -1,15 +1,21 @@
-from masks import get_mask_account, get_mask_card_number
+from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(number: str) -> str:
     """Функция маскирует номер или счёт, используя функции из модуля masks"""
     number_list = number.split()
+    count = 0
     if number_list[0] == "Счет":
         number_list[1] = get_mask_account(number_list[1])
     else:
-        number_list[1] = get_mask_card_number(number_list[1])
-    mask = " ".join(number_list)
-    return mask
+        for i in number_list:
+            if i.isalpha():
+                count += 1
+                continue
+            else:
+                number_list[count] = get_mask_card_number(i)
+    mask_account = " ".join(number_list)
+    return mask_account
 
 
 def get_date(date: str) -> str:

@@ -9,6 +9,17 @@
 1. Клонируйте репозиторий:
    [GitHub](git@github.com:Hohland-2001/MyMainProject.git)
 2. Установите зависимости:
-   `
+   ```
    pip install -r requirements.txt
-   `
+   ```
+
+## Тесты
+
+1. Получить информацию о покрытии тестов в терминал: 
+   ```
+   pytest --cov
+   ```
+2. Получить информацию о покрытии тестов в html-формате:
+   ```
+   pytest --cov=src --cov-report=html
+   ```

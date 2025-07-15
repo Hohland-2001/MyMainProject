@@ -24,7 +24,7 @@ def test_filter_by_currency_01(transactions):
 
 
 def test_filter_by_currency_02(transactions):
-    i = filter_by_currency(transactions, '')
+    i = filter_by_currency(transactions, "")
     assert next(i) == transactions
 
 
@@ -53,4 +53,4 @@ def test_card_number_generator_01():
 
 def test_card_number_generator_02():
     i = card_number_generator(1, 78946561562131316516161)
-    assert next(i) == "Число не долно превышать 16 символов"
+    assert next(i) == "Число не должно превышать 16 символов"

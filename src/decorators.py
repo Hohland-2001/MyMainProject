@@ -16,7 +16,7 @@ def log(filename=None):
                     print(f"{function.__name__} error: {e}. Inputs: {[*args]} {[*kwargs]}")
                 else:
                     with open(filename, "a", encoding="utf-8") as file:
-                        file.write(f"{function.__name__} error: {e}. Inputs: {[*args]} {[*kwargs]}\n")
+                        file.write(f"{function.__name__} error: {e}. Inputs: {[*args]} {{*kwargs}}\n")
             return result
 
         return inner

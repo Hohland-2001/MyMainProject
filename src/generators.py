@@ -1,8 +1,8 @@
-def filter_by_currency(transactions: list, currency_code: str = '') -> str:
+def filter_by_currency(transactions: list, currency_code: str = "") -> str:
     """Функция принимает на вход список словарей, представляющих транзакции.
     Возвращает итератор, который поочередно выдает транзакции,
-    где валюта операции соответствует заданной."""
-    if currency_code == '':
+    где валюта операции соответствует заданной"""
+    if currency_code == "":
         yield transactions
     else:
         for transaction in transactions:
@@ -37,4 +37,4 @@ def card_number_generator(start: int = 1, stop: int = 9999999999999999) -> str:
                 )
                 yield card_number_gen
     else:
-        yield "Число не долно превышать 16 символов"
+        yield "Число не должно превышать 16 символов"

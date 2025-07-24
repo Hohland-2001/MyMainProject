@@ -1,18 +1,23 @@
+import os
+
 import requests
+from dotenv import load_dotenv
 
 
-def amount_transactions(transactions: dict) -> float:
-    ''' Функция возвращает сумму транзакций в рублях '''
-    code_transaction = transactions["operationAmount"]["currency"]["code"]
-    amount_transaction = transactions["operationAmount"]["amount"]
-    headers = {
-        "apikey": "oUrDT4eY1UzK6oyowMSZRcQNcsAYoJ4o"
-    }
+def amount_transaction(transaction: dict) -> float:
+    """Функция возвращает сумму транзакций в рублях"""
+    code_transaction = transaction["operationAmount"]["currency"]["code"]
+    amount_transaction = transaction["operationAmount"]["amount"]
     if code_transaction == "RUB":
         return float(amount_transaction)
     else:
+        load_dotenv(".env")
+        API_KEY = os.getenv("API_KEY")
+        headers = {"apikey": API_KEY}
+
         response = requests.get(
-            f"https://api.apilayer.com/exchangerates_data/convert?to={"RUB"}&from={code_transaction}&amount={amount_transaction}",
-            headers=headers)
-        # response.json()
-        return round(float(response.json()['result']), 2)
+            f"https://api.apilayer.com/exchangerates_data/convert?"
+            f"to={"RUB"}&from={code_transaction}&amount={amount_transaction}",
+            headers=headers,
+        )
+        return float(round(response.json()["result"], 2))

@@ -13,11 +13,11 @@ from src.widget import get_date, mask_account_card
         ("Счет 73654108430135874305", "Счет **4305"),
     ],
 )
-def test_mask_account_card(value: str, expected: str) -> str:
+def test_mask_account_card(value: str, expected: str) -> None:
     assert mask_account_card(value) == expected
 
 
-def test_get_date(date_1: str, date_2: str, date_3: str, date_4: str) -> str:
+def test_get_date(date_1: str, date_2: str, date_3: str, date_4: str) -> None:
     assert get_date(date_1) == "11.03.2024"
     assert get_date(date_2) == "08.05.2020"
     assert get_date(date_3) == "25.12.2015"

@@ -1,4 +1,4 @@
-def filter_by_currency(transactions: list, currency_code: str = "") -> str:
+def filter_by_currency(transactions: list, currency_code: str = "") -> str | None:
     """Функция принимает на вход список словарей, представляющих транзакции.
     Возвращает итератор, который поочередно выдает транзакции,
     где валюта операции соответствует заданной"""
@@ -10,7 +10,7 @@ def filter_by_currency(transactions: list, currency_code: str = "") -> str:
                 yield transaction
 
 
-def transaction_descriptions(transactions: list) -> str:
+def transaction_descriptions(transactions: list) -> str | None:
     """Принимает список словарей с транзакциями и возвращает описание каждой операции по очереди"""
     if transactions == []:
         yield []
@@ -19,7 +19,7 @@ def transaction_descriptions(transactions: list) -> str:
             yield transaction["description"]
 
 
-def card_number_generator(start: int = 1, stop: int = 9999999999999999) -> str:
+def card_number_generator(start: int = 1, stop: int = 9999999999999999) -> str | None:
     """Функция генерирует номера банковских карт в заданном диапозоне"""
     if len(str(start)) <= 16 and len(str(stop)) <= 16:
         for gen_num in range(start, stop + 1):

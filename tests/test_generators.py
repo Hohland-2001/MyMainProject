@@ -1,7 +1,7 @@
 from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 
-def test_filter_by_currency_01(transactions):
+def test_filter_by_currency_01(transactions) -> None:
     i = filter_by_currency(transactions, "RUB")
     assert next(i) == {
         "id": 873106923,
@@ -23,12 +23,12 @@ def test_filter_by_currency_01(transactions):
     }
 
 
-def test_filter_by_currency_02(transactions):
+def test_filter_by_currency_02(transactions) -> None:
     i = filter_by_currency(transactions, "")
     assert next(i) == transactions
 
 
-def test_transaction_descriptions_01(transactions):
+def test_transaction_descriptions_01(transactions: list[dict]) -> None:
     i = transaction_descriptions(transactions)
     assert next(i) == "Перевод организации"
     assert next(i) == "Перевод со счета на счет"
@@ -37,12 +37,12 @@ def test_transaction_descriptions_01(transactions):
     assert next(i) == "Перевод организации"
 
 
-def test_transaction_descriptions_02():
+def test_transaction_descriptions_02() -> None:
     i = transaction_descriptions([])
     assert next(i) == []
 
 
-def test_card_number_generator_01():
+def test_card_number_generator_01() -> None:
     i = card_number_generator(1, 5)
     assert next(i) == "0000 0000 0000 0001"
     assert next(i) == "0000 0000 0000 0002"
@@ -51,6 +51,6 @@ def test_card_number_generator_01():
     assert next(i) == "0000 0000 0000 0005"
 
 
-def test_card_number_generator_02():
+def test_card_number_generator_02() -> None:
     i = card_number_generator(1, 78946561562131316516161)
     assert next(i) == "Число не должно превышать 16 символов"

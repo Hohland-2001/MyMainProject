@@ -15,8 +15,8 @@ def get_mask_card_number(number: str) -> str:
         if number == "":
             return ""
         elif len(number) != 16:
-            logger.info(f"Завершение процесса. Неверная длина номера")
-            return 'Неверная длина номера'
+            logger.info("Завершение процесса. Неверная длина номера")
+            return "Неверная длина номера"
         else:
             mask_card_number = number[:4] + " " + number[4:6] + "** **** " + number[12:]
             logger.info(f"Завершение процесса маскировки карты {mask_card_number}")
@@ -38,6 +38,3 @@ def get_mask_account(number: str) -> str:
             return mask_account
     except Exception as e:
         logger.error(f"Приизошла ошибка {e}")
-
-
-print(get_mask_card_number("012345698794"))

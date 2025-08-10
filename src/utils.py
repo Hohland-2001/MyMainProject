@@ -9,8 +9,8 @@ file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
 
-def get_list_of_operations(path_to_json: str | None) -> list[dict]:
-    """Функция возвращает список операций"""
+def read_operations_from_json(path_to_json: str | None = "../data/operations.json") -> list[dict]:
+    """Функция возвращает список операций из json-файла"""
     try:
         with open(path_to_json, encoding="utf-8") as json_file:
             logger.info(f"Попытка открытие файла {path_to_json}")
@@ -28,6 +28,3 @@ def get_list_of_operations(path_to_json: str | None) -> list[dict]:
     except FileNotFoundError as e:
         logger.error(f"Произошла ошибка {e}. Возврат пустого списка")
         return []
-
-
-print(get_list_of_operations("../data/operations.json"))

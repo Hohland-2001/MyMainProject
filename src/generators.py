@@ -1,4 +1,4 @@
-def filter_by_currency(transactions: list, currency_code: str = "") -> str | None:
+def filter_by_currency(transactions: list, currency_code: str = "") -> str:
     """Функция принимает на вход список словарей, представляющих транзакции.
     Возвращает итератор, который поочередно выдает транзакции,
     где валюта операции соответствует заданной"""
@@ -10,7 +10,7 @@ def filter_by_currency(transactions: list, currency_code: str = "") -> str | Non
                 yield transaction
 
 
-def transaction_descriptions(transactions: list) -> str | None:
+def transaction_descriptions(transactions: list) -> str | list:
     """Принимает список словарей с транзакциями и возвращает описание каждой операции по очереди"""
     if transactions == []:
         yield []

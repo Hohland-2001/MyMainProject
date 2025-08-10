@@ -1,8 +1,10 @@
 import logging
+import os
 
+log_file_path = os.path.join(os.path.dirname(__file__), "../logs/masks.log")
 logger = logging.getLogger("masks")
 logger.setLevel(logging.DEBUG)
-file_handler = logging.FileHandler("../logs/masks.log", encoding="utf-8", mode="w")
+file_handler = logging.FileHandler(f"{log_file_path}", encoding="utf-8", mode="w")
 file_formatter = logging.Formatter("%(asctime)s %(filename)s %(levelname)s %(message)s")
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
@@ -25,7 +27,7 @@ def get_mask_card_number(number: str) -> str:
         logging.error(f"Произошла ошибка {e}")
 
 
-def get_mask_account(number: str) -> str:
+def get_mask_account(number: str) -> str | None:
     """Функция получает на вход номер счёта и маскирует его"""
     try:
         logger.info(f"Процесс маскировки счёта {number}")

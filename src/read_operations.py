@@ -1,11 +1,13 @@
-import json
-from typing import Any
-import pandas as pd
+import os
+
+import pandas
+
+way_to_csv = os.path.join(os.path.dirname(__file__), "../data/transactions.csv")
 
 
-def read_operations_from_csv(path_to_csv: str = "../data/transactions.csv") -> list[dict[str, Any]]:
+def read_operations_from_csv(path_to_csv: str = way_to_csv) -> list[dict[str, int]]:
     """Преобразует файл из формата CSV в список словарей"""
-    df = pd.read_csv(path_to_csv, delimiter=";")
+    df = pandas.read_csv(path_to_csv, delimiter=";")
     max_count_x = df.shape[0]
     operations_list = []
     for count_x in range(0, max_count_x, 1):
@@ -31,9 +33,9 @@ def read_operations_from_csv(path_to_csv: str = "../data/transactions.csv") -> l
     return operations_list
 
 
-def read_operations_from_excel(path_to_excel: str = "../data/transactions_excel.xlsx") -> list[dict]:
+def read_operations_from_excel(path_to_excel: str = "../data/transactions_excel.xlsx") -> list[dict[str, int]]:
     """Преобразует файл из формата XLSX в список словарей"""
-    df = pd.read_excel(path_to_excel)
+    df = pandas.read_excel(path_to_excel)
     max_count_x = df.shape[0]
     operations_list = []
     for count_x in range(0, max_count_x, 1):
@@ -57,9 +59,3 @@ def read_operations_from_excel(path_to_excel: str = "../data/transactions_excel.
         finally:
             operations_list.append(operations_dict_1)
     return operations_list
-
-
-def read_operations_from_json(path_to_json: str = "../data/operations.json") -> list[dict]:
-    with open(path_to_json, encoding="utf-8") as file_json:
-        operations_list = json.load(file_json)
-        return operations_list

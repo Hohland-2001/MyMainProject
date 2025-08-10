@@ -110,3 +110,6 @@ def main() -> None:
                 f"{element_of_list['operationAmount']['currency']['name']}\n"
             )
     return None
+
+
+main()

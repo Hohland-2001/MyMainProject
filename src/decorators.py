@@ -1,8 +1,11 @@
-def log(filename=None):
+from typing import Any
+
+
+def log(filename=None) -> Any:
     """Декоратор для логирования функций и вывода результатов в консоль или файл"""
 
-    def wrapper(function):
-        def inner(*args, **kwargs):
+    def wrapper(function) -> Any:
+        def inner(*args, **kwargs) -> Any:
             try:
                 result = function(*args, **kwargs)
                 if filename is None or filename == "":

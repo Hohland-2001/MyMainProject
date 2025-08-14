@@ -1,16 +1,18 @@
 import json
 import logging
+import os
 
+log_file_path = os.path.join(os.path.dirname(__file__), "../logs/utils.log")
 logger = logging.getLogger("utils")
 logger.setLevel(logging.DEBUG)
-file_handler = logging.FileHandler("../logs/utils.log", encoding="utf-8", mode="w")
+file_handler = logging.FileHandler(f"{log_file_path}", encoding="utf-8", mode="w")
 file_formatter = logging.Formatter("%(asctime)s %(filename)s %(levelname)s %(message)s")
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
 
-def get_list_of_operations(path_to_json: str | None) -> list[dict]:
-    """Функция возвращает список операций"""
+def read_operations_from_json(path_to_json: str | None = "../data/operations.json") -> list[dict]:
+    """Функция возвращает список операций из json-файла"""
     try:
         with open(path_to_json, encoding="utf-8") as json_file:
             logger.info(f"Попытка открытие файла {path_to_json}")
@@ -18,6 +20,7 @@ def get_list_of_operations(path_to_json: str | None) -> list[dict]:
                 logger.info(f"Формирование списка операций из файла {path_to_json}")
                 data = json.load(json_file)
                 if type(data) is not list:
+                    logger.error("Данные не явлются списком. Возврат пустого списка")
                     return []
                 else:
                     logger.info("Получен список операций")
@@ -28,6 +31,3 @@ def get_list_of_operations(path_to_json: str | None) -> list[dict]:
     except FileNotFoundError as e:
         logger.error(f"Произошла ошибка {e}. Возврат пустого списка")
         return []
-
-
-print(get_list_of_operations("../data/operations.json"))
